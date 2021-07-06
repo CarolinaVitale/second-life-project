@@ -9,7 +9,7 @@ class CoordinatesApiHandler {
     }
     
     
-    getCoordinates = response => this.axiosApp.get('/json?address=calle+de+puente+la+reina+27&key=AIzaSyDb3CIAS1ZXY13tYIkYJZ1-RvOLaB0qb8g', response)
+    getCoordinates = address => this.axiosApp.get(`/json?address=${address}&key=AIzaSyDb3CIAS1ZXY13tYIkYJZ1-RvOLaB0qb8g`)
 
 }
 
