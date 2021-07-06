@@ -34,16 +34,15 @@ router.post('/signup', (req, res) => {
                 
                 
                     const address = { street, zipCode, city, country, location }
-                    console.log('COORDENADAS', lat, lng)
-                
                     
+
                     const bcryptSalt = 10
                     const salt = bcrypt.genSaltSync(bcryptSalt)
                     const hashPass = bcrypt.hashSync(pwd, salt)
                 
                     User
                         .create({ username, firstName, lastName, profileImg, address, pwd: hashPass, email, phoneNumber })
-                        .then(() => res.send(req.body)) // redirect profile page
+                        .then((user) => res.render('auth/user-profile', user)) 
                         .catch(err => console.log(err))
         })
 
@@ -60,7 +59,7 @@ router.post('/login', (req, res) => {
         .findOne({ username })
         .then(owner => {
             req.session.currentUser = owner
-            res.send(owner)   //redirect profile page
+            res.render('auth/user-profile', owner)   //redirect profile page
         })
         .catch(err => console.log(err))
 })
@@ -68,5 +67,7 @@ router.post('/login', (req, res) => {
 //Logout
 
 router.get('/logout', (req, res) => req.session.destroy(() => res.redirect('/')))
+
+
 
 module.exports = router
