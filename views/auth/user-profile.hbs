@@ -2,6 +2,9 @@
     <h2>Welcome {{firstName}} {{lastName}}!</h2>
     <hr>
     <p>Your second life's products are here!</p>
+
+    <input hidden id='coordinatesLat' data-lat='{{address.location.coordinates.[0]}}'>
+    <input hidden id='coordinatesLng' data-lng='{{address.location.coordinates.[1]}}'>
     
 
 <div id="userAddress"></div>

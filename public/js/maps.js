@@ -1,10 +1,15 @@
 function initMap() {
 
+    let latitude = document.getElementById('coordinatesLat').dataset.lat
+    let longitude = document.getElementById('coordinatesLng').dataset.lng
+
+    console.log(latitude, longitude)
+
     const myMap = new google.maps.Map(
         document.querySelector('#userAddress'),
-        { zoom: 12, center: { lat: 40.4392890, lng: -3.6952104 } }
+        { zoom: 12, center: { lat: latitude, lng: longitude } }
     )
-    console.log('C O O R D S --------', myMap.data.map.center)
+    
     getPlacesData(myMap)
 }
 
