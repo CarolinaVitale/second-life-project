@@ -12,3 +12,6 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
 })
 
 
+document.addEventListener("DOMContentLoaded",
+  () => { console.log("maps-express-integration JS imported successfully!") }
+)

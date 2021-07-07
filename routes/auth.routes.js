@@ -21,6 +21,7 @@ router.post('/signup', CDNupload.single('profileImg'), (req, res) => {
 
      api.getCoordinates(streetSearch)
         .then(response => {
+            console.log(response)
             lat = response.data.results[0].geometry.location.lat
             lng = response.data.results[0].geometry.location.lng
         })
@@ -35,10 +36,7 @@ router.post('/signup', CDNupload.single('profileImg'), (req, res) => {
                         coordinates: [lat, lng]
                     }
                 
-                
                     const address = { street, zipCode, city, country, location }
-                    console.log('COORDENADAS', lat, lng)
-                
                     
                     const bcryptSalt = 10
                     const salt = bcrypt.genSaltSync(bcryptSalt)
@@ -49,11 +47,12 @@ router.post('/signup', CDNupload.single('profileImg'), (req, res) => {
                         .then(response => res.redirect(`/user/profile/${response._id}`)) // redirect profile page
                         .catch(err => console.log(err))
         })
-
     })
 
+    
 //Login
 router.get('/login', (req, res) => res.render('auth/login'))
+
 
 router.post('/login', (req, res) => {
 
@@ -63,13 +62,14 @@ router.post('/login', (req, res) => {
         .findOne({ username })
         .then(owner => {
             req.session.currentUser = owner
-            res.send(owner)   //redirect profile page
+            res.render('auth/user-profile', owner)   //redirect profile page
         })
         .catch(err => console.log(err))
 })
 
-//Logout
 
+//Logout
 router.get('/logout', (req, res) => req.session.destroy(() => res.redirect('/')))
+
 
 module.exports = router
