@@ -2,7 +2,7 @@
 
 
 
-    <form action="/product/new" method="post">
+    <form action="/product/new" method="post" enctype="multipart/form-data">
 
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -19,11 +19,6 @@
                     <label for="description" class="form-label">Description</label><br>
                     <input type="text" class="form-control" name="description" id="Description"
                         placeholder="Description">
-                </div>
-
-                <div class="form-group">
-                    <label for="imagen" class="form-label">Image</label><br>
-                    <input type="text" class="form-control" name="imagen" id="imagen" placeholder="Image">
                 </div>
 
                 <div class="form-group">
@@ -53,7 +48,11 @@
                         <option value="used">Used</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="imagen" class="form-label">Image</label><br>
+                    <input type="file" class="form-control" name="imagen" id="imagen" placeholder="Image">
 
+                </div>
 
                 <br><br>
 

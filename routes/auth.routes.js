@@ -4,7 +4,7 @@ const AddressAPI = require('../services/api-handler')
 const api = new AddressAPI()
 
 
-
+const CDNupload = require('../config/cloudinary.config');
 const User = require("../models/User.model")
 const { count } = require('../models/User.model')
 
@@ -13,7 +13,7 @@ const { count } = require('../models/User.model')
 router.get('/signup', (req, res) => res.render('auth/signup'))
 
 
-router.post('/signup', (req, res) => {
+router.post('/signup', CDNupload.single('profileImg'), (req, res) => {
     
     // API address
     const streetSearch = req.body.street
@@ -24,8 +24,11 @@ router.post('/signup', (req, res) => {
             lat = response.data.results[0].geometry.location.lat
             lng = response.data.results[0].geometry.location.lng
         })
-        .then(() => {        
-                    const { username, firstName, lastName, profileImg, pwd, email, phoneNumber, street, zipCode, city, country } = req.body
+        .then(() => { 
+   
+                    const { username, firstName, lastName, pwd, email, phoneNumber, street, zipCode, city, country } = req.body
+                    
+                    const { path } = req.file 
                 
                     const location = {
                         type: 'Point',
@@ -42,8 +45,8 @@ router.post('/signup', (req, res) => {
                     const hashPass = bcrypt.hashSync(pwd, salt)
                 
                     User
-                        .create({ username, firstName, lastName, profileImg, address, pwd: hashPass, email, phoneNumber })
-                        .then(() => res.send(req.body)) // redirect profile page
+                        .create({ username, firstName, lastName, profileImg: path, address, pwd: hashPass, email, phoneNumber })
+                        .then(response => res.redirect(`/user/profile/${response._id}`)) // redirect profile page
                         .catch(err => console.log(err))
         })
 

@@ -9,9 +9,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
-const CDNstorage = new CloudinaryStorage({ cloudinary })
+const storage = new CloudinaryStorage({ cloudinary })
 
-const CDNupload = multer({ CDNstorage })
+const CDNupload = multer({ storage })
 
  
-module.exports = { CDNupload }
+module.exports = CDNupload 

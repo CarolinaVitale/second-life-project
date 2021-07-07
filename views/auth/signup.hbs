@@ -3,7 +3,7 @@
     <h3>Profile information</h3>
     <hr>
 
-    <form action="/signup" method="post">
+    <form action="/signup" method="post" enctype="multipart/form-data">
 
         <div class="row g-3">
             <div class="col-md-12">
@@ -65,7 +65,7 @@
             <div class="col-md-4">
                 <br>
                 <label for="profileImg" class="form-label">Profile Image</label>
-                <input type="text" class="form-control" name="profileImg" id="profileImg" placeholder="Image">
+                <input type="file" class="form-control" name="profileImg" id="profileImg" placeholder="Image">
             </div>
 
             <div class="col-md-4">

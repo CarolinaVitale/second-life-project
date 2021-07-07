@@ -1,7 +1,9 @@
 const router = require('express').Router()
 
+const CDNupload = require('../config/cloudinary.config');
 const User = require('../models/User.model')
-const Product = require('../models/Product.model')
+const Product = require('../models/Product.model');
+const { response } = require('express');
 
 //new product
 router.get('/new', (req, res) => {
@@ -17,16 +19,14 @@ router.get('/new', (req, res) => {
 
 })
 
-router.post('/new', (req, res) => {
-
-    const { name, color, status, description, owner, image, location } = req.body
-
-    
+router.post('/new', CDNupload.single('imagen'), (req, res) => {
    
+    const { name, color, status, description, owner,location } = req.body
+    const { path } = req.file
 
     Product
-        .create({ name, color, status, description, owner, image, location })
-        .then(() => res.send(req.body))
+        .create({ name, color, status, description, owner, imagen: path, location })
+        .then(response => res.redirect(`/product/details/${response._id}`))
         .catch(err => console.log(err))
 })
 
@@ -48,7 +48,10 @@ router.get('/details/:id', (req, res) => {
     Product
         .findById(id)
         .populate('user')
-        .then(product => res.render('products/product-details', product))
+        .then(product => {
+            console.log(product)
+            res.render('products/product-details', product)
+        })
         .catch(err => console.log(err))
 })
 
