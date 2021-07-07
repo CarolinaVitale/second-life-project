@@ -8,7 +8,7 @@ class CoordinatesApiHandler {
         })
     }
     
-    getCoordinates = address => this.axiosApp.get(`/json?address=${address}&key=AIzaSyDb3CIAS1ZXY13tYIkYJZ1-RvOLaB0qb8g`)
+    getCoordinates = address => this.axiosApp.get(`/json?address=${address}&key=${process.env.APIMAPS}`)
 }
 
 module.exports = CoordinatesApiHandler

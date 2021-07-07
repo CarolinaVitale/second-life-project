@@ -3,8 +3,6 @@ const bcrypt = require('bcrypt')
 const AddressAPI = require('../services/api-handler')
 const api = new AddressAPI()
 
-
-
 const User = require("../models/User.model")
 const { count } = require('../models/User.model')
 
@@ -21,6 +19,7 @@ router.post('/signup', (req, res) => {
 
      api.getCoordinates(streetSearch)
         .then(response => {
+            console.log(response)
             lat = response.data.results[0].geometry.location.lat
             lng = response.data.results[0].geometry.location.lng
         })
@@ -32,10 +31,8 @@ router.post('/signup', (req, res) => {
                         coordinates: [lat, lng]
                     }
                 
-                
                     const address = { street, zipCode, city, country, location }
                     
-
                     const bcryptSalt = 10
                     const salt = bcrypt.genSaltSync(bcryptSalt)
                     const hashPass = bcrypt.hashSync(pwd, salt)
@@ -45,11 +42,12 @@ router.post('/signup', (req, res) => {
                         .then((user) => res.render('auth/user-profile', user)) 
                         .catch(err => console.log(err))
         })
-
     })
 
+    
 //Login
 router.get('/login', (req, res) => res.render('auth/login'))
+
 
 router.post('/login', (req, res) => {
 
@@ -64,10 +62,9 @@ router.post('/login', (req, res) => {
         .catch(err => console.log(err))
 })
 
+
 //Logout
-
 router.get('/logout', (req, res) => req.session.destroy(() => res.redirect('/')))
-
 
 
 module.exports = router

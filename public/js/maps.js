@@ -2,9 +2,9 @@ function initMap() {
 
     const myMap = new google.maps.Map(
         document.querySelector('#userAddress'),
-        { zoom: 14, center: { lat: 40.4415188, lng:-3.671316 } }
+        { zoom: 12, center: { lat: 40.4392890, lng: -3.6952104 } }
     )
-
+    console.log('C O O R D S --------', myMap.data.map.center)
     getPlacesData(myMap)
 }
 
@@ -12,19 +12,21 @@ function initMap() {
 function getPlacesData(myMap) {
 
     axios
-        .get('/api/users')
-        .then(response => response.data.forEach(elm => printMarker(elm.address.location, myMap)))
+        .get('/api/user')
+        .then(user => {
+            printMarker(user.data.address.location, myMap)
+            console.log('L A T    L N G -------', user.data.address.location.coordinates)
+        })
         .catch(err => console.log(err))
 }
 
 
+function printMarker(info, myMap) {
 
-// function printMarker(location, myMap) {
+    const { coordinates } = info
 
-//     const { coordinates } = location
-
-//     new google.maps.Marker({
-//         map: myMap,
-//         position: { lat: coordinates[0], lng: coordinates[1] }
-//     })
-// }
+    new google.maps.Marker({
+        map: myMap,
+        position: { lat: coordinates[0], lng: coordinates[1] }
+    })
+}

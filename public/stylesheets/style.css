@@ -46,4 +46,5 @@ h1, h2, h3, h4, h5, h6, p {
 #myMap, #userAddress {
   height: 500px;
   background-color: red;
+  margin-bottom: 50px;
 }
