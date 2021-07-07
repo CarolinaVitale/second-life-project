@@ -1,28 +1,26 @@
 const router = require('express').Router()
-
 const User = require('../models/User.model')
 const Product = require('../models/Product.model')
+
 
 //new product
 router.get('/new', (req, res) => {
 
-        User
-            .find()
-            .select('username')
-            .then(user => {
-                console.log(user)
-                res.render('products/add-product', {user})
-            })
-            .catch(err => console.log(err))
+    const { _id } = req.session.currentUser
 
+    User
+        .findById(_id)
+        .then(info => {
+            console.log('info', info)
+            res.render('products/add-product', { info })
+        })
+        .catch(err => console.log(err))
 })
+
 
 router.post('/new', (req, res) => {
 
     const { name, color, status, description, owner, image, location } = req.body
-
-    
-   
 
     Product
         .create({ name, color, status, description, owner, image, location })
@@ -30,12 +28,13 @@ router.post('/new', (req, res) => {
         .catch(err => console.log(err))
 })
 
+
 //products list
 router.get('/list', (req, res) => {
-    
+
     Product
         .find()
-        .then(products => res.render('products/products-list', { products}))
+        .then(products => res.render('products/products-list', { products }))
         .catch(err => console.log(err))
 })
 
@@ -53,7 +52,6 @@ router.get('/details/:id', (req, res) => {
 })
 
 
-
 //edit product
 router.get('/edit/:id', (req, res) => {
     const { id } = req.params
@@ -62,9 +60,11 @@ router.get('/edit/:id', (req, res) => {
         .findById(id)
         .then(product => {
             console.log(id)
-            res.render('products/product-edit', product)})
+            res.render('products/product-edit', product)
+        })
         .catch(err => console.log(err))
 })
+
 
 router.post('/edit', (req, res) => {
     const { id } = req.params
@@ -76,16 +76,16 @@ router.post('/edit', (req, res) => {
         .catch(err => console.log(err))
 })
 
-//delete product 
 
+//delete product 
 router.get('/delete/:id', (req, res) => {
-    const { id } =req.params
+    const { id } = req.params
 
     Product
         .findByIdAndDelete(id)
         .then(() => res.redirect('/product/list'))
         .catch(err => console.log(err))
-    })
+})
 
 
 module.exports = router

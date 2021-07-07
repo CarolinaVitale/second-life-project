@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+
 const productSchema = new Schema(
     {
         name: String,
@@ -10,7 +11,7 @@ const productSchema = new Schema(
         color: String,
         status: {
             type: String,
-            enum:[ 'almost new', 'little used', 'really used' ]
+            enum:[ 'like new', 'little used', 'used' ]
         },
         description: String,
         owner: {
