@@ -1,33 +1,34 @@
 const router = require('express').Router()
-
-const CDNupload = require('../config/cloudinary.config');
+const CDNupload = require('../config/cloudinary.config')
 const User = require('../models/User.model')
-const Product = require('../models/Product.model');
-const { response } = require('express');
+const Product = require('../models/Product.model')
+
+const { checkLoggedUser, checkRoles } = require('./../middleware')
+const { isAdmin, isUser } =require('./../utils/index')
 
 
 //new product
-router.get('/new', (req, res) => {
+router.get('/new', checkLoggedUser, (req, res) => res.render('products/add-product'))
 
-    const { _id } = req.session.currentUser
-
-    User
-        .findById(_id)
-        .then(info => {
-            console.log('info', info)
-            res.render('products/add-product', { info })
-        })
-        .catch(err => console.log(err))
-})
 
 router.post('/new', CDNupload.single('imagen'), (req, res) => {
-   
-    const { name, color, status, description, owner,location } = req.body
-    const { path } = req.file
+
+    const { name, status, description } = req.body
+    let path
+    if (!req.file) {
+        path = undefined
+    } else {
+        path = req.file.path
+    }
+    
+    if (!name.length || !status.length || !description.length || !path) {
+        res.render('products/add-product', { errorMessage: 'Fill the blanks' })
+        return
+    }
 
     Product
-        .create({ name, color, status, description, owner, imagen: path, location })
-        .then(response => res.redirect(`/product/details/${response._id}`))
+        .create({ name, status, description, owner: req.session.currentUser._id, imagen: path })
+        .then(product => res.render('products/product-details', product))
         .catch(err => console.log(err))
 })
 
@@ -35,9 +36,11 @@ router.post('/new', CDNupload.single('imagen'), (req, res) => {
 //products list
 router.get('/list', (req, res) => {
 
+    const isAdmin = req.session.currentUser?.role === 'ADMIN'
+
     Product
         .find()
-        .then(products => res.render('products/products-list', { products }))
+        .then(products => res.render('products/products-list', { products, isAdmin }))
         .catch(err => console.log(err))
 })
 
@@ -49,38 +52,37 @@ router.get('/details/:id', (req, res) => {
 
     Product
         .findById(id)
-        .populate('user')
-        .then(product => {
-            console.log(product)
-            res.render('products/product-details', product)
-        })
+        .populate('owner')
+        .then(product => res.render('products/product-details',  product ))
         .catch(err => console.log(err))
 })
 
 
 //edit product
 router.get('/edit/:id', (req, res) => {
+
     const { id } = req.params
 
     Product
         .findById(id)
-        .then(product => {
-            console.log(id)
-            res.render('products/product-edit', product)
-        })
+        .then(product => res.render('products/product-edit', product))
         .catch(err => console.log(err))
 })
 
 
-router.post('/edit', (req, res) => {
+router.post('/edit/:id', (req, res) => {
+    
     const { id } = req.params
-    const { name, color, status, description, owner, image, location } = req.body
+    const { name, status, description, owner, image} = req.body
 
     Product
-        .findByIdAndUpdate(id, { name, color, status, description, owner, image, location })
-        .then(() => res.redirect('/product/details'))
+        .findByIdAndUpdate(id, { name, status, description, owner, image})
+        .then(() => res.redirect('/product/list'))
         .catch(err => console.log(err))
 })
+
+
+//category products
 
 
 //delete product 

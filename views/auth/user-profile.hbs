@@ -1,7 +1,19 @@
 <div class="container">
     <h2>Welcome {{firstName}} {{lastName}}!</h2>
     <hr>
-    <p>Your second life's products are here!</p>
+    <div class="row"> 
+        <div class="col-md-3">
+            <img class="profileImg" src="{{profileImg}}" alt="">
+        </div>
+
+        <div class="col-md-3"><br>
+            <h5><strong>Contact details!</strong></h5><br>
+            <p><strong>Phone Number</strong>: <small>{{phoneNumber}}</small></p>
+            <p><strong>email</strong>: <small>{{email}}</small></p>
+        </div> 
+    </div>
+    <hr>
+    <h5>Your second life's products are here!</h5><br>
 
     <input hidden id='coordinatesLat' data-lat='{{address.location.coordinates.[0]}}'>
     <input hidden id='coordinatesLng' data-lng='{{address.location.coordinates.[1]}}'>

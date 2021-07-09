@@ -1,47 +1,51 @@
 <div class="container">
 
-    
+    <h3>Edit {{name}}</h3>
+    <hr>
 
-        <h3>Edit {{name}}</h3>
-        <hr>
-        
-        <form action="product/edit/{{id}}" method="post">
-        
+    <form action="/product/edit/{{id}}" method="post">
+
         <div class="form-group">
             <label for="name" class="form-label">Name</label><br>
             <input type="text" class="form-control" name="name" id="name" value="{{name}}">
         </div>
-        
+
         <div class="form-group">
             <label for="description" class="form-label">Description</label><br>
-            <input type="text" class="form-control" name="description" id="Description"  value="{{description}}">
+            <input type="text" class="form-control" name="description" id="Description" value="{{description}}">
         </div>
-        
+
+        <div class="form-group">
+            <label for="category" class="form-label">Category</label><br>
+            <select type="text" class="form-control" name="category" id="category">
+                <option>Select one</option>
+                <option value="books">Books</option>
+                <option value="home">Home</option>
+                <option value="clothes">Clothes</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="status" class="form-label">Status</label><br>
+            <select type="text" class="form-control" name="status" id="status">
+                <option>Select one</option>
+                <option value="like new">Like New</option>
+                <option value="little used">Little Used</option>
+                <option value="used">Used</option>
+            </select>
+        </div>
+
         <div class="form-group">
             <label for="imagen" class="form-label">Image</label><br>
-            <input type="text" class="form-control" name="imagen" id="imagen"  value="{{imagen}}">
+            <input type="text" class="form-control" name="imagen" id="imagen" value="{{imagen}}">
         </div>
-        
-        
-        <label for="location" class="form-label">Location</label><br>
-        <div class="row g-3">
-            <div class="col">
-                <input type="text" class="form-control" name="latitude" id="latitude"  value="{{Latitude}}">
-            </div>
-        
-            <div class="col">
-                <input type="text" class="form-control" name="longitude" id="longitude"  value="{{longitude}}">
-            
-            </div>
-        </div>
-            
+
         <br><br>
-            
+
         <button type="submit" class="btn btn-success btn-block">Edit</button>
         <br><br>
-        
-        
-        
     </form>
-
 </div>

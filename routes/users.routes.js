@@ -2,13 +2,13 @@ const router = require('express').Router()
 const User = require('./../models/User.model')
 
  //user profile
-router.get('/profile/:id', (req, res) => {
+router.get('/profile', (req, res) => {
    
-    const { id } = req.params
+    const { _id } = req.session.currentUser
 
         User
-            .findById(id)
-            .then(user => res.render('users/user-profile', user))
+            .findById(_id)
+            .then(user => res.render('auth/user-profile', user))
             .catch(err => console.log(err))
 })
 

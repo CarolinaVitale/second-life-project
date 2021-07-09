@@ -1,5 +1,6 @@
 const axios = require('axios')
 
+
 class CoordinatesApiHandler {
 
     constructor() {
@@ -8,7 +9,8 @@ class CoordinatesApiHandler {
         })
     }
     
-    getCoordinates = address => this.axiosApp.get(`/json?address=${address}&key=${process.env.APIMAPS}`)
+    getCoordinates = address => this.axiosApp.get(`/json?address=${address}&key=${process.env.APIMAPS}`).catch(err => console.log(err))
 }
+
 
 module.exports = CoordinatesApiHandler

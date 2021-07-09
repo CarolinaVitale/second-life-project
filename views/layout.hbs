@@ -1,83 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <head>
+<head>
 
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{title}}</title>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="/stylesheets/style.css"/>
-      <link rel="shortcut icon" href="./../images/logo.ico" type="image/x-icon">
-      
-   </head>
-   
-   <header>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>{{title}}</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="/stylesheets/style.css" />
+   <link rel="shortcut icon" href="./../images/logo.ico" type="image/x-icon">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         <a class="navbar-brand" href="/"><strong>SEC<img class="heartLogoNavbar" src="./../images/logo.ico" alt="">ND LIFE</strong></a>
-         
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll"
-            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
+</head>
 
-         <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
-               
-               <li class="nav-item">
-                  <a class="nav-link" href="/product/new">New Product<span class="sr-only"></span></a>
-               </li>
+<header>
 
-               <li class="nav-item">
-                  <a class="nav-link" href="/api/all-users">Users (JSON)<span class="sr-only"></span></a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="/api/user">Current User<span class="sr-only"></span></a>
-               </li>
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/"><strong>SEC<img class="heartLogoNavbar" src="./../images/logo.ico" alt="">ND
+            LIFE</strong></a>
 
-               <li class="nav-item">
-                  <a class="nav-link" href="/product/list">Products's List<span class="sr-only"></span></a>
-               </li>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll"
+         aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
 
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                     data-toggle="dropdown" aria-expanded="false">User</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                     <li><a class="dropdown-item" href="/signup">Signup</a></li>
-                     <li><a class="dropdown-item" href="/login">Login</a></li>
-                     <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
-                        <hr class="dropdown-divider">
-                     </li>
-                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                  </ul>
-               </li>
-            </ul>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+         <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
 
-            <form class="d-flex">
-               <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-               <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-         </div>
-      </nav>
-         
-   </header>
-  
-   <body>
-      
-      <div class="container">
-         {{{body}}}
+            <li class="nav-item">
+               <a class="nav-link" href="/product/new">New Product<span class="sr-only"></span></a>
+            </li>
+
+            <li class="nav-item">
+               <a class="nav-link" href="/product/list">Products's List<span class="sr-only"></span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                  data-toggle="dropdown" aria-expanded="false">User</a>
+               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <li><a class="dropdown-item" href="/signup">Signup</a></li>
+                  <li><a class="dropdown-item" href="/login">Login</a></li>
+                  <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+                  <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+         </ul>
+         </li>
+         </ul>
+
+         <form class="d-flex">
+            <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+         </form>
       </div>
+   </nav>
 
+</header>
 
-      <script src="/js/script.js"></script>
-      <script src="/services/api-handler.js"></script>
-      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<body>
 
+      {{{body}}}
   
-   </body>
+
+
+   <script src="/js/script.js"></script>
+   <script src="/services/api-handler.js"></script>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
 
 </html>

@@ -1,7 +1,4 @@
 <div class="container">
-
-
-
     <form action="/product/new" method="post" enctype="multipart/form-data">
 
         <div class="row justify-content-center">
@@ -11,6 +8,7 @@
                 <hr>
 
                 <div class="form-group">
+                    
                     <label for="name" class="form-label">Name</label><br>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name">
                 </div>
@@ -22,13 +20,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="color" class="form-label">Color</label><br>
-                    <input type="text" class="form-control" name="color" id="color" placeholder="Color">
-                </div>
-
-                <div class="form-group">
                     <label for="category" class="form-label">Category</label><br>
-                    <select type="text" class="form-control" name="category" id="category" placeholder="Category">
+                    <select type="text" class="form-control" name="category" id="category">
                         <option>Select one</option>
                         <option value="books">Books</option>
                         <option value="home">Home</option>
@@ -41,24 +34,25 @@
 
                 <div class="form-group">
                     <label for="status" class="form-label">Status</label><br>
-                    <select type="text" class="form-control" name="status" id="status" placeholder="Status">
+                    <select type="text" class="form-control" name="status" id="status">
                         <option>Select one</option>
                         <option value="like new">Like New</option>
                         <option value="little used">Little Used</option>
                         <option value="used">Used</option>
                     </select>
                 </div>
+
                 <div class="form-group">
                     <label for="imagen" class="form-label">Image</label><br>
-                    <input type="file" class="form-control" name="imagen" id="imagen" placeholder="Image">
-
+                    <input type="file" class="form-control btn-light" name="imagen" id="imagen">
                 </div>
 
-                <br><br>
-
-                <button type="submit" class="btn btn-success btn-block">Submit</button>
+                <br><button type="submit" class="btn btn-success btn-block">Submit</button><br>
+                <div class="form-group">
+                    {{#if errorMessage}}<div class="errorMessage">{{errorMessage}}{{/if}}
+                </div>
                 <br><br>
             </div>
-        </div>
+        </div> 
     </form>
 </div>

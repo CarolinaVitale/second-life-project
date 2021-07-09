@@ -1,11 +1,33 @@
 <div class="container">
-    <h3>Product Details</h3>
-    <hr>
-     
-    <p> {{name}}</p>
-    <p>{{description}}</p>
-    <p>{{color}}</p>   
-    <p>{{status}}</p>  
-    <img src="{{imagen}}" alt="">
 
+    <h3><strong>{{name}} </strong><small>({{status}})</small></h3><br>
+    <hr>
+    <p><strong>Description</strong>: <small>{{description}}</small></p>
+    <p>If you interested in this product contact the owner</p>
+    <p><small><strong>Owner</strong>: {{owner.firstName}} {{owner.lastName}} · <strong>Phone Number</strong>: {{owner.phoneNumber}} · <strong>email</strong>: {{owner.email}}</small></p><br><br>
+        
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <img src="{{imagen}}" class="imgProductDetails" alt=""> 
+        </div>
+        <div class="col-md-6">
+            <div id="userAddress"></div>
+        </div>
+    </div>
+    
+    
+    
+
+<input hidden id='coordinatesLat' data-lat='{{owner.address.location.coordinates.[0]}}'>
+<input hidden id='coordinatesLng' data-lng='{{owner.address.location.coordinates.[1]}}'>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/maps.js"></script>
+<script src="/js/mapStyles.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb3CIAS1ZXY13tYIkYJZ1-RvOLaB0qb8g&callback=initMap"></script>
 </div>

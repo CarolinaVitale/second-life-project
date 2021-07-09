@@ -8,7 +8,6 @@ const productSchema = new Schema(
             type: String,
             enum: ['books', 'clothes', 'home', 'technology', 'sports', 'other' ]
         },
-        color: String,
         status: {
             type: String,
             enum:[ 'like new', 'little used', 'used' ]

@@ -1,26 +1,26 @@
 <div class="container">
-
-    <h3>Login</h3><hr>
-
     <form action="login" method="post">
-        
+
         <div class="row justify-content-center">
             <div class="col-md-6">
-                
+                <h3>Login</h3>
+                <hr>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="username" class="form-control" name="username" id="username" aria-describedby="emailHelp">
-                    <small id="help" class="form-text text-muted">We'll never share your information with anyone else.</small>
+                    <input type="username" class="form-control" name="username" id="username"
+                        aria-describedby="emailHelp">
+                    <small id="help" class="form-text text-muted">We'll never share your information with anyone
+                        else.</small>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="pwd">Password</label>
                     <input type="password" class="form-control" name="pwd" id="pwd">
                 </div>
 
-                <button type="submit" class="btn btn-success btn-block">Submit</button>
-
+                <button type="submit" class="btn btn-success btn-block">Submit</button><br>
             </div>
         </div>
     </form>
+    {{#if errorMessage}}<div class="errorMessage">{{errorMessage}}{{/if}}
 </div>

@@ -9,10 +9,12 @@ h1, h2, h3, h4, h5, h6, p {
   color: #666666;
 }
 
+
 /* navbar */
 .navbar {
   margin-bottom: 50px;
 }
+
 
 /* logos */
 .logo {
@@ -30,6 +32,7 @@ h1, h2, h3, h4, h5, h6, p {
   width: 20px;
 }
 
+
 /* button */
 .btn-success {
     color: #fff;
@@ -37,14 +40,83 @@ h1, h2, h3, h4, h5, h6, p {
     border-color: #76dd85;
 }
 
+
+.adminBtn {
+  color: #dc3545;
+}
+
+
 /* category icons */
 .category {
-  width: 100px;
+    margin: 20px 0;
+    text-align: center;
+    
 }
+.row {
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.category a {
+    text-align: center;
+    color: #76dd85;
+}
+
+.category img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
 
 /* maps */
 #myMap, #userAddress {
   height: 500px;
-  background-color: red;
   margin-bottom: 50px;
 }
+
+
+/* products */
+.imgProductDetails {
+  width: 500px;
+}
+
+.product-card {
+    margin: 20px 0;
+}
+
+.product-card p {
+    padding: 0 20px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.productRow{
+  display: flex;
+}
+
+
+/* profile image */
+.profileImg {
+    width: 200px;
+    object-fit: cover;
+}
+
+
+/* error Message */
+.errorMessage {
+    padding: 8px 5px;
+    color: white;
+    background: #dc3545;;
+    text-align: center;
+    font-size: .95em;
+    border-radius: 5px;
+}
+

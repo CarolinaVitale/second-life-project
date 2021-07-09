@@ -1,14 +1,20 @@
 <div class="container">
     <h3>Products's List</h3>
-        <hr>
+    <hr>
+    <div class="row">
         {{#each products}}
-            <p>* {{name}}
-                <small>
-                <a href="/product/details/{{id}}">details</a> |
-                <a href="/product/edit/{{id}}">edit</a> |
-                <a href="/product/delete/{{id}}">delete</a>
-                </small>
-            </p>
+        <div class="col-md-4">
+            <article class="product-card">
+
+                <img style="width: 100%" src="{{imagen}}" alt=""><br>
+                <p>{{name}}<small> | <a href="/product/details/{{id}}"> details</a></small>
+                {{#if ../isAdmin}}
+                    <small> | <a class="adminBtn" href="/product/edit/{{id}}">edit</a>
+                    | <a class="adminBtn" href="/product/delete/{{id}}">delete</a></small></p>
+                {{/if}}
+                
+            </article>
+        </div>
         {{/each}}
-    
+    </div>
 </div>

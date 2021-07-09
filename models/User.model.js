@@ -22,7 +22,7 @@ const userSchema = new Schema(
         coordinates: [Number],
       }
     },
-    password: String,
+    pwd: String,
     email: String,
     phoneNumber: Number,
     role: {
